@@ -74,9 +74,12 @@ body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;ba
       </div>
 
 
-      <label style="display:flex;align-items:center;gap:12px;cursor:pointer;border:1px solid rgba(201,143,61,.3);background:#201a13;padding:14px 16px">
-        <input id="engrave-cb" type="checkbox" data-base="67.99" style="width:20px;height:20px;accent-color:#c98f3d;cursor:pointer;flex-shrink:0">
-        <span style="font-size:15px;color:#ece4d6">Add custom laser engraving <span style="color:#c98f3d;font-weight:600">+$5.00</span></span>
+      <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;border:1px solid rgba(201,143,61,.3);background:#201a13;padding:14px 16px">
+        <input id="engrave-cb" type="checkbox" data-base="67.99" data-engrave-cost="20" style="width:20px;height:20px;accent-color:#c98f3d;cursor:pointer;flex-shrink:0;margin-top:2px">
+        <span style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:15px;color:#ece4d6">Add custom laser engraving <span style="color:#c98f3d;font-weight:600">+$20.00</span></span>
+          <span style="font-size:13px;color:#a89a84;line-height:1.5">Uppers, lowers, slides, magazines, and more — we engrave metals, plastics, stone, and more.</span>
+        </span>
       </label>
       <div style="display:flex;flex-direction:column;gap:14px">
         <a class="guntab-checkout-action" rel="nofollow" target="_blank" href="https://www.guntab.com/checkouts/new?checkout_uuid=94e24e21-72f4-4506-80ff-05c843456f71" style="display:inline-block;width:fit-content"><img style="border:0;height:44px;display:block" alt="Pay with GunTab" src="https://www.guntab.com/images/buttons/pay-with-guntab-blue.svg"></a>
@@ -111,7 +114,8 @@ const engraveCb = document.getElementById('engrave-cb');
 const priceEl = document.getElementById('price');
 engraveCb.addEventListener('change', function () {
   const base = parseFloat(engraveCb.dataset.base);
-  priceEl.textContent = '$' + (engraveCb.checked ? base + 5 : base).toFixed(2);
+  const engrave = parseFloat(engraveCb.dataset.engraveCost);
+  priceEl.textContent = '$' + (engraveCb.checked ? base + engrave : base).toFixed(2);
 });
 </script>
 <script>
